@@ -176,7 +176,72 @@ function updateBattle() {
         Math.round(blueFinal - redFinal)
         .toLocaleString();
 
+//----------------------------------
+// 勝敗判定
+//----------------------------------
 
+const diff =
+    blueFinal - redFinal;
+
+
+if (diff > 0) {
+
+    document.getElementById("winnerText").textContent =
+        "🔵 青 勝利予測";
+
+
+    const needRedRate =
+        (blueFinal - redPoint)
+        / remainSeconds;
+
+
+    const extra =
+        needRedRate - redRate;
+
+
+    if(extra > 0){
+
+        document.getElementById("needRate").textContent =
+            "🔴 赤が勝つには +" +
+            Math.ceil(extra) +
+            "点/秒 必要";
+
+    }
+
+
+}
+else if(diff < 0){
+
+    document.getElementById("winnerText").textContent =
+        "🔴 赤 勝利予測";
+
+
+    const needBlueRate =
+        (redFinal - bluePoint)
+        / remainSeconds;
+
+
+    const extra =
+        needBlueRate - blueRate;
+
+
+    if(extra > 0){
+
+        document.getElementById("needRate").textContent =
+            "🔵 青が勝つには +" +
+            Math.ceil(extra) +
+            "点/秒 必要";
+
+    }
+
+
+}
+else{
+
+    document.getElementById("winnerText").textContent =
+        "⚪ 引き分け予測";
+
+}
 
     //----------------------------------
     // 保存
