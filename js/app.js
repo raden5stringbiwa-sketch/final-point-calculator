@@ -107,13 +107,47 @@ function updateBattle() {
     previousRedPoint = redPoint;
 
 
-    //----------------------------------
-    // AI
-    //----------------------------------
+//----------------------------------
+// 最終予測
+//----------------------------------
 
-    document.getElementById("statusIcon").textContent = "🤖";
+const timeText =
+    document.getElementById("currentTime").value;
 
-    document.getElementById("statusText").textContent =
-        "解析完了";
 
+// mm:ss → 秒
+const parts = timeText.split(":");
+
+const remainSeconds =
+    Number(parts[0]) * 60 + Number(parts[1]);
+
+
+const blueFinal =
+    bluePoint + blueRate * remainSeconds;
+
+
+const redFinal =
+    redPoint + redRate * remainSeconds;
+
+
+
+document.getElementById("blueFinal").textContent =
+    Math.round(blueFinal).toLocaleString();
+
+
+document.getElementById("redFinal").textContent =
+    Math.round(redFinal).toLocaleString();
+
+
+document.getElementById("pointDiff").textContent =
+    Math.round(blueFinal - redFinal)
+    .toLocaleString();
+
+
+document.getElementById("statusIcon").textContent =
+    "🤖";
+
+
+document.getElementById("statusText").textContent =
+    "解析完了";
 }
