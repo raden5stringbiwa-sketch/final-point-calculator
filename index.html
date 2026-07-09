@@ -178,104 +178,90 @@
 
         <section class="card ai-area">
 
-            <span id="statusIcon">
-                ⚪
-            </span>
+           <section class="card ai-area">
 
-            <div id="statusText">
+    <div class="battle-status">
 
-                データ待機中
+        <span id="statusIcon">
+            ⚪
+        </span>
 
-            </div>
+        <span id="statusText">
+            データ待機中
+        </span>
 
-            <div class="ai-message">
+    </div>
 
-                ポイントを2回入力すると予測を開始します
 
-            </div>
+    <div
+        class="need-rate"
+        id="needRate">
 
-        </section>
+        --
+
+    </div>
+
+
+</section>
 
 
         <!-- ======================================
              結果
         ======================================= -->
 
-        <section class="card">
+      <section class="card">
 
-            <h2>📊 予測結果</h2>
-
-            <div class="result-grid">
-
-                <div class="result-card">
-
-                    <h3>
-
-                        🔵 青 最終ポイント
-
-                    </h3>
-
-                    <div
-                        class="result-value"
-                        id="blueFinal">
-
-                        --
-
-                    </div>
-
-                </div>
+    <h2>📊 最終予測</h2>
 
 
-                <div class="result-card">
-
-                    <h3>
-
-                        🔴 赤 最終ポイント
-
-                    </h3>
-
-                    <div
-                        class="result-value"
-                        id="redFinal">
-
-                        --
-
-                    </div>
-
-                </div>
-
-            </div>
+    <div class="final-score">
 
 
-            <div class="big-result">
+        <div class="final-team blue-final">
 
-                <div class="label">
+            🔵 青
 
-                    予想点差
-
-                </div>
-
-                <div
-                    class="value"
-                    id="pointDiff">
-
-                    --
-
-                </div>
-
-            </div>
-
-
-            <div
-                class="need-rate"
-                id="needRate">
-
+            <div id="blueFinal">
                 --
-
             </div>
 
-        </section>
+        </div>
 
+
+
+        <div class="final-team red-final">
+
+            🔴 赤
+
+            <div id="redFinal">
+                --
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="diff-area">
+
+        <div>
+            予想点差
+        </div>
+
+
+        <div id="pointDiff">
+
+            --
+
+        </div>
+
+
+    </div>
+
+
+</section>
 
     </div>
 
