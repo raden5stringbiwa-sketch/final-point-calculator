@@ -143,6 +143,67 @@ document.getElementById("pointDiff").textContent =
     Math.round(blueFinal - redFinal)
     .toLocaleString();
 
+    //----------------------------------
+// 逆転必要速度
+//----------------------------------
+
+if (blueFinal > redFinal) {
+
+    // 赤が勝つために必要な速度
+
+    const needRedRate =
+        (blueFinal + 1 - redPoint)
+        / remainSeconds;
+
+
+    const extra =
+        needRedRate - redRate;
+
+
+    if (extra > 0) {
+
+        document.getElementById("needRate").textContent =
+            "🔴逆転には +" +
+            extra.toFixed(1) +
+            "/秒 必要";
+
+    } else {
+
+        document.getElementById("needRate").textContent =
+            "🔵勝利ペース";
+
+    }
+
+
+} else {
+
+
+    // 青が勝つために必要な速度
+
+    const needBlueRate =
+        (redFinal + 1 - bluePoint)
+        / remainSeconds;
+
+
+    const extra =
+        needBlueRate - blueRate;
+
+
+    if (extra > 0) {
+
+        document.getElementById("needRate").textContent =
+            "🔵逆転には +" +
+            extra.toFixed(1) +
+            "/秒 必要";
+
+    } else {
+
+        document.getElementById("needRate").textContent =
+            "🔴勝利ペース";
+
+    }
+
+}
 
 document.getElementById("statusIcon").textContent =
     "🤖";
