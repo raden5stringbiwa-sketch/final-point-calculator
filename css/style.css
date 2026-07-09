@@ -609,3 +609,203 @@ footer{
     }
 
 }
+/* ==========================================================
+   Compact Mode
+   戦況確認用 高さ圧縮
+========================================================== */
+
+
+/* Header 縮小 */
+.header{
+    padding:10px 20px;
+}
+
+.title-area h1{
+    font-size:24px;
+}
+
+.sub-title{
+    display:none;
+}
+
+
+/* メイン余白縮小 */
+.container{
+    padding:10px;
+}
+
+
+/* カード圧縮 */
+.card{
+    padding:12px;
+    margin-bottom:10px;
+}
+
+.card h2{
+    margin-bottom:8px;
+    font-size:20px;
+}
+
+
+/* ポイント入力 */
+.battle-area{
+
+    gap:10px;
+
+}
+
+
+.team-card{
+
+    padding:10px;
+
+    min-height:110px;
+
+}
+
+
+.team-card h3{
+
+    margin-bottom:8px;
+
+    font-size:18px;
+
+}
+
+
+.team-card input{
+
+    height:45px;
+
+    font-size:32px;
+
+    padding-right:10px;
+
+}
+
+
+/* 毎秒 */
+.rate{
+
+    font-size:24px;
+
+}
+
+
+/* 時間入力 */
+.setting-row{
+
+    margin-top:8px;
+
+}
+
+
+/* ボタン */
+.button-area{
+
+    margin-top:12px;
+
+}
+
+button{
+
+    font-size:18px;
+
+    padding:10px 40px;
+
+}
+
+
+/* AI判定 */
+.ai-area{
+
+    margin-top:10px;
+
+}
+
+
+#statusIcon{
+
+    font-size:42px;
+
+    margin-bottom:5px;
+
+}
+
+
+#statusText{
+
+    font-size:28px;
+
+}
+
+
+.ai-message{
+
+    margin-top:5px;
+
+    font-size:13px;
+
+}
+
+
+/* 結果 */
+.result-grid{
+
+    gap:10px;
+
+    margin-top:10px;
+
+}
+
+
+.result-card{
+
+    padding:10px;
+
+}
+
+
+.result-card h3{
+
+    font-size:16px;
+
+}
+
+
+.result-value{
+
+    font-size:32px;
+
+}
+
+
+.big-result{
+
+    margin-top:10px;
+
+}
+
+
+.big-result .value{
+
+    font-size:42px;
+
+}
+
+
+.need-rate{
+
+    margin-top:10px;
+
+    font-size:22px;
+
+}
+
+
+/* footer削減 */
+footer{
+
+    padding:5px;
+
+}
