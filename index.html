@@ -1,57 +1,324 @@
-<!-- ======================================
-     ポイント入力
-====================================== -->
+<!DOCTYPE html>
+<html lang="ja">
 
-<section class="card">
+<head>
 
-    <h2>📥 ポイント入力</h2>
+    <meta charset="UTF-8">
 
-    <div class="battle-area">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-        <!-- 青毎秒 -->
-        <div class="rate blue-rate">
-            <span id="blueRate">--/秒</span>
-        </div>
+    <title>Final Point Calculator β</title>
 
-        <!-- 青カード -->
-        <div class="team-card blue">
+    <link rel="stylesheet"
+          href="css/style.css">
 
-            <h3>🔵 青同盟</h3>
+</head>
 
-            <input
-                type="number"
-                id="bluePoint"
-                placeholder="現在ポイント">
+<body>
 
-        </div>
+    <!-- ======================================
+         Header
+    ======================================= -->
 
-        <!-- 赤カード -->
-        <div class="team-card red">
+    <header class="header">
 
-            <h3>🔴 赤同盟</h3>
+        <div class="title-area">
 
-            <input
-                type="number"
-                id="redPoint"
-                placeholder="現在ポイント">
+            <h1>🏯 Final Point Calculator β</h1>
+
+            <div class="sub-title">
+
+                戦況予測ツール
+
+            </div>
 
         </div>
 
-        <!-- 赤毎秒 -->
-        <div class="rate red-rate">
-            <span id="redRate">--/秒</span>
+        <div class="version">
+
+            Ver 0.2.0
+
         </div>
+
+    </header>
+
+
+    <div class="container">
+
+
+        <!-- ======================================
+             試合設定
+        ======================================= -->
+
+        <section class="card">
+
+            <h2>⚙ 試合設定</h2>
+
+            <div class="setting-row">
+
+                <label>
+
+                    終了時刻
+
+                </label>
+
+                <input
+                    type="time"
+                    id="endTime"
+                    step="1"
+                    value="22:00:00">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             ポイント入力
+        ======================================= -->
+
+        <section class="card">
+
+            <h2>📥 ポイント入力</h2>
+
+            <div class="battle-area">
+
+                <!-- 青毎秒 -->
+
+                <div class="rate blue-rate">
+
+                    <span id="blueRate">
+
+                        --/秒
+
+                    </span>
+
+                </div>
+
+
+                <!-- 青カード -->
+
+                <div class="team-card blue">
+
+                    <h3>
+
+                        🔵 青同盟
+
+                    </h3>
+
+                    <input
+                        type="number"
+                        id="bluePoint"
+                        placeholder="0">
+
+                </div>
+
+
+                <!-- 赤カード -->
+
+                <div class="team-card red">
+
+                    <h3>
+
+                        🔴 赤同盟
+
+                    </h3>
+
+                    <input
+                        type="number"
+                        id="redPoint"
+                        placeholder="0">
+
+                </div>
+
+
+                <!-- 赤毎秒 -->
+
+                <div class="rate red-rate">
+
+                    <span id="redRate">
+
+                        --/秒
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <br>
+
+
+            <div class="setting-row">
+
+                <label>
+
+                    前回時刻
+
+                </label>
+
+                <input
+                    type="time"
+                    id="beforeTime"
+                    step="1">
+
+            </div>
+
+
+            <br>
+
+
+            <div class="setting-row">
+
+                <label>
+
+                    今回時刻
+
+                </label>
+
+                <input
+                    type="time"
+                    id="currentTime"
+                    step="1">
+
+            </div>
+
+
+            <div class="button-area">
+
+                <button id="updateButton">
+
+                    📸 戦況を記録
+
+                </button>
+
+            </div>
+
+        </section>
+        <!-- ======================================
+             AI判定
+        ======================================= -->
+
+        <section class="card ai-area">
+
+            <span id="statusIcon">
+                ⚪
+            </span>
+
+            <div id="statusText">
+
+                データ待機中
+
+            </div>
+
+            <div class="ai-message">
+
+                ポイントを2回入力すると予測を開始します
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             結果
+        ======================================= -->
+
+        <section class="card">
+
+            <h2>📊 予測結果</h2>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+
+                    <h3>
+
+                        🔵 青 最終ポイント
+
+                    </h3>
+
+                    <div
+                        class="result-value"
+                        id="blueFinal">
+
+                        --
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <h3>
+
+                        🔴 赤 最終ポイント
+
+                    </h3>
+
+                    <div
+                        class="result-value"
+                        id="redFinal">
+
+                        --
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="big-result">
+
+                <div class="label">
+
+                    予想点差
+
+                </div>
+
+                <div
+                    class="value"
+                    id="pointDiff">
+
+                    --
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="need-rate"
+                id="needRate">
+
+                --
+
+            </div>
+
+        </section>
+
 
     </div>
 
-    <div class="button-area">
 
-        <button id="updateButton">
+    <footer>
 
-            📸 戦況を記録
+        Final Point Calculator β
+        Version 0.2.0
 
-        </button>
+    </footer>
 
-    </div>
 
-</section>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
+
+
+         
