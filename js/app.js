@@ -1,6 +1,6 @@
 // =========================================
 // Final Point Calculator β
-// Version 0.1.0
+// Version 0.2.1
 // =========================================
 
 
@@ -8,7 +8,7 @@
 // 前回データ
 //==============================
 
-let previousTime = null;
+let previousRemainSeconds = null;
 
 let previousBluePoint = null;
 
@@ -29,39 +29,76 @@ window.onload = function () {
 
 
 //==============================
+// mm:ss → 秒
+//==============================
+
+function convertTimeToSeconds(timeText) {
+
+    const parts = timeText.split(":");
+
+    const minutes = Number(parts[0]);
+    const seconds = Number(parts[1]);
+
+    return minutes * 60 + seconds;
+
+}
+
+
+
+//==============================
 // 更新
 //==============================
 
 function updateBattle() {
 
-    const now = new Date();
 
     const bluePoint =
         Number(document.getElementById("bluePoint").value);
 
+
     const redPoint =
         Number(document.getElementById("redPoint").value);
+
+
+    const timeText =
+        document.getElementById("currentTime").value;
+
+
+    const remainSeconds =
+        convertTimeToSeconds(timeText);
+
 
 
     //----------------------------------
     // 初回
     //----------------------------------
 
-    if (previousTime === null) {
+    if (previousRemainSeconds === null) {
 
-        previousTime = now;
+
+        previousRemainSeconds = remainSeconds;
 
         previousBluePoint = bluePoint;
 
         previousRedPoint = redPoint;
 
-        document.getElementById("statusIcon").textContent = "🟡";
+
+        document.getElementById("statusIcon").textContent =
+            "🟡";
+
+
         document.getElementById("statusText").textContent =
             "初回データ保存完了";
+
+
+        document.getElementById("beforeTime").textContent =
+            timeText;
+
 
         return;
 
     }
+
 
 
     //----------------------------------
@@ -69,7 +106,18 @@ function updateBattle() {
     //----------------------------------
 
     const elapsedSeconds =
-        (now - previousTime) / 1000;
+        previousRemainSeconds - remainSeconds;
+
+
+
+    if (elapsedSeconds <= 0) {
+
+        alert("残り時間が正しくありません");
+
+        return;
+
+    }
+
 
 
     //----------------------------------
@@ -80,9 +128,11 @@ function updateBattle() {
         (bluePoint - previousBluePoint)
         / elapsedSeconds;
 
+
     const redRate =
         (redPoint - previousRedPoint)
         / elapsedSeconds;
+
 
 
     //----------------------------------
@@ -90,125 +140,66 @@ function updateBattle() {
     //----------------------------------
 
     document.getElementById("blueRate").textContent =
-        blueRate.toFixed(1) + "/s";
+        blueRate.toFixed(1) + "点/秒";
+
 
     document.getElementById("redRate").textContent =
-        redRate.toFixed(1) + "/s";
+        redRate.toFixed(1) + "点/秒";
+
 
 
     //----------------------------------
-    // 次回用保存
+    // 最終予測
     //----------------------------------
 
-    previousTime = now;
+    const blueFinal =
+        bluePoint + blueRate * remainSeconds;
+
+
+    const redFinal =
+        redPoint + redRate * remainSeconds;
+
+
+
+    document.getElementById("blueFinal").textContent =
+        Math.round(blueFinal)
+        .toLocaleString();
+
+
+    document.getElementById("redFinal").textContent =
+        Math.round(redFinal)
+        .toLocaleString();
+
+
+
+    document.getElementById("pointDiff").textContent =
+        Math.round(blueFinal - redFinal)
+        .toLocaleString();
+
+
+
+    //----------------------------------
+    // 保存
+    //----------------------------------
+
+    previousRemainSeconds = remainSeconds;
 
     previousBluePoint = bluePoint;
 
     previousRedPoint = redPoint;
 
 
-//----------------------------------
-// 最終予測
-//----------------------------------
-
-const timeText =
-    document.getElementById("currentTime").value;
-
-
-// mm:ss → 秒
-const parts = timeText.split(":");
-
-const remainSeconds =
-    Number(parts[0]) * 60 + Number(parts[1]);
-
-
-const blueFinal =
-    bluePoint + blueRate * remainSeconds;
-
-
-const redFinal =
-    redPoint + redRate * remainSeconds;
-
-
-
-document.getElementById("blueFinal").textContent =
-    Math.round(blueFinal).toLocaleString();
-
-
-document.getElementById("redFinal").textContent =
-    Math.round(redFinal).toLocaleString();
-
-
-document.getElementById("pointDiff").textContent =
-    Math.round(blueFinal - redFinal)
-    .toLocaleString();
 
     //----------------------------------
-// 逆転必要速度
-//----------------------------------
+    // 状態
+    //----------------------------------
 
-if (blueFinal > redFinal) {
-
-    // 赤が勝つために必要な速度
-
-    const needRedRate =
-        (blueFinal + 1 - redPoint)
-        / remainSeconds;
+    document.getElementById("statusIcon").textContent =
+        "🤖";
 
 
-    const extra =
-        needRedRate - redRate;
+    document.getElementById("statusText").textContent =
+        "解析完了";
 
 
-    if (extra > 0) {
-
-        document.getElementById("needRate").textContent =
-            "🔴逆転には +" +
-            extra.toFixed(1) +
-            "/秒 必要";
-
-    } else {
-
-        document.getElementById("needRate").textContent =
-            "🔵勝利ペース";
-
-    }
-
-
-} else {
-
-
-    // 青が勝つために必要な速度
-
-    const needBlueRate =
-        (redFinal + 1 - bluePoint)
-        / remainSeconds;
-
-
-    const extra =
-        needBlueRate - blueRate;
-
-
-    if (extra > 0) {
-
-        document.getElementById("needRate").textContent =
-            "🔵逆転には +" +
-            extra.toFixed(1) +
-            "/秒 必要";
-
-    } else {
-
-        document.getElementById("needRate").textContent =
-            "🔴勝利ペース";
-
-    }
-
-}
-
-document.getElementById("statusIcon").textContent =
-    "🤖";
-
-
-document.getElementById("statusText").textContent =
-    "解析完了";
 }
