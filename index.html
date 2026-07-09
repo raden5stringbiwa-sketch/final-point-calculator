@@ -1,273 +1,57 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ======================================
+     ポイント入力
+====================================== -->
 
-    <title>Final Point Calculator β</title>
+<section class="card">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <h2>📥 ポイント入力</h2>
 
-<body>
+    <div class="battle-area">
 
-    <!-- ==========================================================
-         Header
-    =========================================================== -->
-    <header class="header">
+        <!-- 青毎秒 -->
+        <div class="rate blue-rate">
+            <span id="blueRate">--/秒</span>
+        </div>
 
-        <div class="title-area">
+        <!-- 青カード -->
+        <div class="team-card blue">
 
-            <h1>🏯 Final Point Calculator β</h1>
+            <h3>🔵 青同盟</h3>
 
-            <p class="sub-title">
-                現在の戦況から最終ポイントをリアルタイム計算
-            </p>
+            <input
+                type="number"
+                id="bluePoint"
+                placeholder="現在ポイント">
 
         </div>
 
-        <div class="version">
-            Ver.0.1.0
+        <!-- 赤カード -->
+        <div class="team-card red">
+
+            <h3>🔴 赤同盟</h3>
+
+            <input
+                type="number"
+                id="redPoint"
+                placeholder="現在ポイント">
+
         </div>
 
-    </header>
+        <!-- 赤毎秒 -->
+        <div class="rate red-rate">
+            <span id="redRate">--/秒</span>
+        </div>
 
+    </div>
 
-    <!-- ==========================================================
-         Main
-    =========================================================== -->
-    <main class="container">
+    <div class="button-area">
 
-        <!-- ======================================
-             設定
-        ======================================= -->
+        <button id="updateButton">
 
-        <section class="card">
+            📸 戦況を記録
 
-            <h2>⚙ 設定</h2>
+        </button>
 
-            <div class="setting-row">
+    </div>
 
-                <label for="endTime">
-                    終了時刻
-                </label>
-
-                <input
-                    type="time"
-                    id="endTime"
-                    value="22:00">
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             入力
-        ======================================= -->
-
-        <section class="card">
-
-            <h2>📥 ポイント入力</h2>
-
-            <div class="team-input-area">
-
-                <!-- 青 -->
-                <div class="team-card blue">
-
-                    <h3>🔵 青同盟</h3>
-
-                    <input
-                        type="number"
-                        id="bluePoint"
-                        placeholder="現在ポイント">
-
-                </div>
-
-                <!-- 赤 -->
-                <div class="team-card red">
-
-                    <h3>🔴 赤同盟</h3>
-
-                    <input
-                        type="number"
-                        id="redPoint"
-                        placeholder="現在ポイント">
-
-                </div>
-
-            </div>
-
-            <div class="button-area">
-
-                <button id="updateButton">
-
-                    🤖 AI解析開始
-
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             AI判定
-        ======================================= -->
-
-        <section class="card">
-
-            <h2>🤖 AI判定</h2>
-
-            <div id="statusIcon" class="status-icon">
-
-                ⚪
-
-            </div>
-
-            <div id="statusText" class="status-text">
-
-                データ待ち
-
-            </div>
-
-        </section>
-
-
-        <!-- ======================================
-             結果
-        ======================================= -->
-
-        <section class="card">
-
-            <h2>📊 計算結果</h2>
-
-            <div class="result-grid">
-
-                <div>
-
-                    <span class="label">
-                        青毎秒
-                    </span>
-
-                    <span
-                        id="blueRate"
-                        class="value">
-
-                        --
-
-                    </span>
-
-                </div>
-
-                <div>
-
-                    <span class="label">
-                        赤毎秒
-                    </span>
-
-                    <span
-                        id="redRate"
-                        class="value">
-
-                        --
-
-                    </span>
-
-                </div>
-
-                <div>
-
-                    <span class="label">
-                        青最終ポイント
-                    </span>
-
-                    <span
-                        id="blueFinal"
-                        class="value">
-
-                        --
-
-                    </span>
-
-                </div>
-
-                <div>
-
-                    <span class="label">
-                        赤最終ポイント
-                    </span>
-
-                    <span
-                        id="redFinal"
-                        class="value">
-
-                        --
-
-                    </span>
-
-                </div>
-
-                <div>
-
-                    <span class="label">
-                        勝敗予想
-                    </span>
-
-                    <span
-                        id="winner"
-                        class="value">
-
-                        --
-
-                    </span>
-
-                </div>
-
-                <div>
-
-                    <span class="label">
-                        予想点差
-                    </span>
-
-                    <span
-                        id="difference"
-                        class="value">
-
-                        --
-
-                    </span>
-
-                </div>
-
-                <div>
-
-                    <span class="label">
-                        逆転に必要
-                    </span>
-
-                    <span
-                        id="needRate"
-                        class="value">
-
-                        --
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ==========================================================
-         JavaScript
-    =========================================================== -->
-    <script src="js/app.js"></script>
-
-</body>
-</html>
+</section>
