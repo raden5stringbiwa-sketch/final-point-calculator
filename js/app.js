@@ -202,7 +202,9 @@ document.getElementById("beforeTime").value =
 //----------------------------------
 // 勝敗判定
 //----------------------------------
-
+let winner = "";
+let historyNeedRate = "--";
+    
 const diff =
     blueFinal - redFinal;
 
@@ -211,7 +213,8 @@ if (diff > 0) {
 
     document.getElementById("winnerText").textContent =
         "🔵 青 勝利予測";
-
+    
+　　winner = "🔵";
 
     const needRedRate =
         (blueFinal - redPoint)
@@ -229,6 +232,10 @@ if (diff > 0) {
             Math.ceil(extra) +
             "点/秒 必要";
 
+        historyNeedRate =
+    "🔴 +" +
+    Math.ceil(extra) +
+    "点/秒";
     }
 
 
@@ -237,6 +244,8 @@ else if(diff < 0){
 
     document.getElementById("winnerText").textContent =
         "🔴 赤 勝利予測";
+    
+    winner = "🔴";
 
 
     const needBlueRate =
@@ -254,7 +263,10 @@ else if(diff < 0){
             "🔵 青が勝つには +" +
             Math.ceil(extra) +
             "点/秒 必要";
-
+historyNeedRate =
+    "🔵 +" +
+    Math.ceil(extra) +
+    "点/秒";
     }
 
 
@@ -262,8 +274,10 @@ else if(diff < 0){
 else{
 
     document.getElementById("winnerText").textContent =
-        "⚪ 引き分け予測";
+    "⚪ 引き分け予測";
 
+    winner = "⚪";
+historyNeedRate = "--";
 }
 
     //----------------------------------
@@ -289,29 +303,55 @@ else{
     document.getElementById("statusText").textContent =
         "解析完了";
 
+
+//----------------------------------
+// 履歴
+//----------------------------------
+
+addHistory(
+    timeText,
+    bluePoint,
+    redPoint,
+    winner,
+    blueRate,
+    redRate,
+    historyNeedRate
 );
-
 }
-function addHistory(time, blue, red, blueRate, redRate) {
+function addHistory(
+    time,
+    bluePoint,
+    redPoint,
+    winner,
+    blueRate,
+    redRate,
+    needRate
+) 
+{
 
-    const tbody =
-        document.getElementById("historyBody");
+const tbody =
+    document.getElementById("historyBody");
 
-    const row =
-        tbody.insertRow(0);
+const row =
+    tbody.insertRow(0);
 
-    row.insertCell(0).textContent = time;
+row.insertCell(0).textContent = time;
 
-    row.insertCell(1).textContent =
-        blue.toLocaleString();
+row.insertCell(1).textContent =
+    bluePoint.toLocaleString();
 
-    row.insertCell(2).textContent =
-        red.toLocaleString();
+row.insertCell(2).textContent =
+    redPoint.toLocaleString();
 
-    row.insertCell(3).textContent =
-        blueRate;
+row.insertCell(3).textContent =
+    winner;
 
-    row.insertCell(4).textContent =
-        redRate;
+row.insertCell(4).textContent =
+    Math.round(blueRate);
 
+row.insertCell(5).textContent =
+    Math.round(redRate);
+
+row.insertCell(6).textContent =
+    needRate;
 }
