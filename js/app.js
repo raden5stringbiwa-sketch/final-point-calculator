@@ -267,4 +267,35 @@ else{
         "解析完了";
 
 
+    addHistory(
+    "03:42",
+    95504,
+    87704,
+    8,
+    56
+);
+
+}
+function addHistory(time, blue, red, blueRate, redRate) {
+
+    const tbody =
+        document.getElementById("historyBody");
+
+    const row =
+        tbody.insertRow(0);
+
+    row.insertCell(0).textContent = time;
+
+    row.insertCell(1).textContent =
+        blue.toLocaleString();
+
+    row.insertCell(2).textContent =
+        red.toLocaleString();
+
+    row.insertCell(3).textContent =
+        blueRate;
+
+    row.insertCell(4).textContent =
+        redRate;
+
 }
