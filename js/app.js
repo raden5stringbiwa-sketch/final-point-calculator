@@ -91,8 +91,8 @@ function updateBattle() {
             "初回データ保存完了";
 
 
-        document.getElementById("beforeTime").textContent =
-            timeText;
+document.getElementById("beforeTime").value =
+    timeText;
 
 
         return;
@@ -266,13 +266,6 @@ else{
     document.getElementById("statusText").textContent =
         "解析完了";
 
-
-    addHistory(
-    "03:42",
-    95504,
-    87704,
-    8,
-    56
 );
 
 }
