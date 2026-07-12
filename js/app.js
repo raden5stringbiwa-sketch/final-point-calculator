@@ -32,12 +32,35 @@ window.onload = function () {
 // mm:ss → 秒
 //==============================
 
+//==============================
+// 時間文字列 → 秒
+// 342 → 3:42
+// 3:42 → 3:42
+//==============================
+
 function convertTimeToSeconds(timeText) {
 
-    const parts = timeText.split(":");
+    timeText = timeText.trim();
 
-    const minutes = Number(parts[0]);
-    const seconds = Number(parts[1]);
+    // コロンあり
+    if (timeText.includes(":")) {
+
+        const parts = timeText.split(":");
+
+        const minutes = Number(parts[0]);
+        const seconds = Number(parts[1]);
+
+        return minutes * 60 + seconds;
+    }
+
+    // コロンなし
+    const value = timeText.padStart(2, "0");
+
+    const minutes =
+        Number(value.slice(0, -2));
+
+    const seconds =
+        Number(value.slice(-2));
 
     return minutes * 60 + seconds;
 
