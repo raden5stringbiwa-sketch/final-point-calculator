@@ -213,8 +213,7 @@ if (diff > 0) {
 
     document.getElementById("winnerText").textContent =
         "🔵 青 勝利予測";
-    
-　　winner = "🔵";
+    winner = "🔵";
 
     const needRedRate =
         (blueFinal - redPoint)
