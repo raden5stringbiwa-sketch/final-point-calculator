@@ -175,12 +175,16 @@ document.getElementById("beforeTime").value =
     // 最終予測
     //----------------------------------
 
-    const blueFinal =
-        bluePoint + blueRate * remainSeconds;
+const finalSeconds =
+    Math.max(remainSeconds - 1, 0);
 
 
-    const redFinal =
-        redPoint + redRate * remainSeconds;
+const blueFinal =
+    bluePoint + blueRate * finalSeconds;
+
+
+const redFinal =
+    redPoint + redRate * finalSeconds;
 
 
 
